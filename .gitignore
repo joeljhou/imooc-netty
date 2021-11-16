@@ -1,2 +1,4 @@
 # 项目排除路径
 /imooc-netty-hello/target/
+/WebChat/unpackage/
+/WebChat/manifest.json
