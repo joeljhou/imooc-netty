@@ -1,0 +1,51 @@
+{
+  "id": "2948879",
+  "name": "WebChat",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "15933094",
+      "name": "微信",
+      "font_class": "weixin-app",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "1149395",
+      "name": "通讯录",
+      "font_class": "tongxunlu",
+      "unicode": "e6c2",
+      "unicode_decimal": 59074
+    },
+    {
+      "icon_id": "5334202",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "77",
+      "unicode_decimal": 119
+    },
+    {
+      "icon_id": "386486",
+      "name": "朋友圈",
+      "font_class": "pengyouquan",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "1188721",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "3170635",
+      "name": "发现激活",
+      "font_class": "faxianjihuo",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    }
+  ]
+}
