@@ -2,7 +2,11 @@
 # 后端工程
 /.idea/
 /imooc-netty-hello/target/
+/im-weixin-netty/target/
+/im-weixin-netty/.mvn/
 
 # 前端工程
 /imooc-netty-webchat/unpackage/
 /im-weixin-ui/unpackage/
+
+
