@@ -1,5 +1,8 @@
 # 项目排除路径
-/imooc-netty-hello/target/
-/WebChat/unpackage/
-/WebChat/manifest.json
+# 后端工程
 /.idea/
+/imooc-netty-hello/target/
+
+# 前端工程
+/WebChat/unpackage/
+/imooc-weixin/unpackage/
