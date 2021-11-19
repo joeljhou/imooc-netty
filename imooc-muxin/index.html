@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="fontico/iconfont.css"/>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
-		
+
 		// H5 plus事件处理
 		mui.plusReady(function () {
 			// 设置系统状态栏样式
@@ -25,14 +25,14 @@
 	<header class="mui-bar mui-bar-nav title">
 		<h1 class="mui-title title-color">微信</h1>
 	</header>
-	
-	
+
+
 	<!-- 主体 -->
 	<div class="mui-content">
 		微信好友列表
 	</div>
-	
-	
+
+
 	<!-- 底部选项卡 -->
 	<nav class="mui-bar mui-bar-tab">
 		<a class="mui-tab-item mui-active">
@@ -52,5 +52,49 @@
 			<span class="mui-tab-label">我</span>
 		</a>
 	</nav>
+
+	<script type="text/javascript">
+        /*声明4个页面的数组*/
+		var weixinArray = [
+			{
+				pageId: "imooc-chatlist.html",
+                pageUrl: "imooc-chatlist.html"
+			},
+			{
+				pageId: "imooc-contact.html",
+				pageUrl: "imooc-contact.html"
+			},
+			{
+				pageId: "imooc-discover.html",
+				pageUrl: "imooc-discover.html"
+			},
+			{
+				pageId: "imooc-me.html",
+				pageUrl: "imooc-me.html"
+			},
+		];
+
+		// 设置子页面样式
+		var weixinStyle = {
+			top: '44px',
+			bottom: '50px'
+		}
+
+        mui.plusReady(function (){
+			
+			// 获取当前的webview对象
+			var indexWebview = plus.webview.currentWebview();
+			
+			// 向当前的主页webview追加4张子页webview对象
+			for(var i = 0; i < weixinArray.length; i++){
+				var weixinPage = plus.webview.create(weixinArray[i].pageUrl, weixinArray[i].pageId, weixinStyle);
+				// 隐藏webview窗口
+				weixinPage.hide();
+				// 追加每一个子页面到当前主页面
+				indexWebview.append(weixinPage);
+			}
+			plus.webview.show(weixinArray[0].pageId);
+        })
+	</script>
 </body>
 </html>
