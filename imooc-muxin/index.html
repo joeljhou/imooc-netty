@@ -26,28 +26,21 @@
 		<h1 class="mui-title title-color">微信</h1>
 	</header>
 
-
-	<!-- 主体 -->
-	<div class="mui-content">
-		微信好友列表
-	</div>
-
-
 	<!-- 底部选项卡 -->
 	<nav class="mui-bar mui-bar-tab">
-		<a class="mui-tab-item mui-active">
+		<a class="mui-tab-item mui-active" tableindex="0">
 			<span class="mui-icon iconfont icon-weixin"></span>
 			<span class="mui-tab-label">微信</span>
 		</a>
-		<a class="mui-tab-item">
+		<a class="mui-tab-item" tableindex="1">
 			<span class="mui-icon iconfont icon-tongxunlu"></span>
 			<span class="mui-tab-label">通讯录</span>
 		</a>
-		<a class="mui-tab-item">
+		<a class="mui-tab-item" tableindex="2">
 			<span class="mui-icon iconfont icon-faxianjihuo"></span>
 			<span class="mui-tab-label">发现</span>
 		</a>
-		<a class="mui-tab-item">
+		<a class="mui-tab-item" tableindex="3">
 			<span class="mui-icon iconfont icon-wode"></span>
 			<span class="mui-tab-label">我</span>
 		</a>
@@ -94,6 +87,22 @@
 				indexWebview.append(weixinPage);
 			}
 			plus.webview.show(weixinArray[0].pageId);
+			
+			// 批量绑定tab事件，展示不同的页面
+			mui(".mui-bar-tab").on("tap","a",function(){
+				//获取id
+				var tableindex = this.getAttribute("tableindex");
+				
+				// 显示点击的tab选项所对应的页面
+				plus.webview.show(weixinArray[tableindex].pageId, "fade-in", 200);
+				
+				// 隐藏其他的不需要的页面
+				for(var i = 0; i < weixinArray.length; i++){
+					if(i != tableindex){
+						plus.webview.hide(weixinArray[i].pageId, "fade-out", 200);
+					}
+				}
+			})
         })
 	</script>
 </body>
