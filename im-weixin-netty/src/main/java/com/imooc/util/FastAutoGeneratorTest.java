@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +21,7 @@ public class FastAutoGeneratorTest {
      * 数据库配置(DataSourceConfig)
      */
     private static final DataSourceConfig.Builder DATA_SOURCE_CONFIG = new DataSourceConfig.Builder(
-            "jdbc:mysql://127.0.0.1:3306/weixin-dev", "root", "root");
+            "jdbc:mysql://127.0.0.1:3306/weixin-dev?characterEncoding=utf8", "root", "root");
 
 
     public static void main(String[] args) {
@@ -50,15 +51,10 @@ public class FastAutoGeneratorTest {
                 })
                 // 模板配置(TemplateConfig)
                 // 注入配置(InjectionConfig)
-                //策略配置(StrategyConfig)
+                // 策略配置(StrategyConfig)
                 .strategyConfig(builder -> {
-                    builder
-                            .addInclude(Collections.emptyList())
-                            // 设置需要生成的表名
-                            //.addInclude("users")
-                            //.addInclude("my_friends")
-                            //.addInclude("friends_request")
-                            //.addInclude("chat_msg")
+                    builder.addInclude(getTables("all"))   // 设置需要生成的表名
+                            //.addInclude("users,my_friends,friends_request,chat_msg")
                             .addTablePrefix("t_", "c_"); // 设置过滤表前缀
                 })
 
