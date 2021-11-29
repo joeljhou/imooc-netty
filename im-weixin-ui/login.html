@@ -123,6 +123,7 @@
 							success: function(data) {
 								//服务器返回响应，根据响应结果，分析是否登录成功；
 								//console.log(JSON.stringify(data));
+								app.showToast(JSON.stringify(data), "success");
 
 								username.blur();
 								txt_password.blur();

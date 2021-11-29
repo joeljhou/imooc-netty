@@ -1,6 +1,6 @@
 window.app = {
 
-	serverUrl: "http://localhost:8080",
+	serverUrl: "http://192.168.31.250:8080",
 
 	/**
 	 * 判断字符串是否为空

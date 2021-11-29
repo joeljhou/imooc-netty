@@ -60,7 +60,7 @@ public class UsersController {
             userResult = iUsersService.saveUser(usersBean);
         }
         UsersVO usersVo = new UsersVO();
-        BeanUtils.copyProperties(usersBean,usersVo);
+        BeanUtils.copyProperties(userResult,usersVo);
         return IMoocJSONResult.ok(usersVo);
     }
 
