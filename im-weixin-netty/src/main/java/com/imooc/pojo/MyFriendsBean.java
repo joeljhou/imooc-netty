@@ -29,7 +29,7 @@ public class MyFriendsBean extends Model<MyFriendsBean> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("用户关联表id")
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
 
     @ApiModelProperty("我的用户id")

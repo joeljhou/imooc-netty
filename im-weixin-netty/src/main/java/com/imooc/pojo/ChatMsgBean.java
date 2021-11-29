@@ -32,7 +32,7 @@ public class ChatMsgBean extends Model<ChatMsgBean> {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("聊天记录id")
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
 
     @ApiModelProperty("发送者用户id")

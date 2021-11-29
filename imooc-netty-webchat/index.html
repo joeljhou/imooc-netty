@@ -19,7 +19,7 @@
 				init: function() {
 					// 判断浏览器是否支持websocket协议
 					if (window.WebSocket) {
-						CHAT.socket = new WebSocket("ws://192.168.31.250:8088/ws");
+						CHAT.socket = new WebSocket("ws://192.168.2.130:8088/ws");
 						// 生命周期
 						CHAT.socket.onopen = function() {
 							console.log("连接建立成功...");
