@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<script src="js/mui.min.js"></script>
 
@@ -19,23 +19,25 @@
 			.p-t-85 {
 				padding-top: 10px;
 			}
-			
+
 			.p-b-70 {
 				padding-bottom: 35px;
 			}
-			
+
 			.m-t-85 {
 				margin-top: 15px;
 			}
-			
+
 			.container-login100 {
 				padding: 25px;
 			}
+
 			/*toast信息提示*/
-			
+
 			.mui-toast-container {
 				bottom: 50% !important;
 			}
+
 			.mui-toast-message {
 				opacity: 0.6;
 				color: #fff;
@@ -68,16 +70,17 @@
 							<input class="input100" type="password" id="txt_password" name="password" placeholder="密码">
 							<span class="focus-input100"></span>
 						</div>
+						<!-- 登录/注册 -->
 						<div class="container-login100-form-btn">
 							<button type="submit" id="registOrLogin" class="login100-form-btn">
-								登录/注册1
+								登录/注册
 							</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="js/app.js" ></script>
+		<script type="text/javascript" src="js/app.js"></script>
 		<script type="text/javascript">
 			/* 使用大H5+对象 plusready仅仅在app开发中使用 */
 			mui.plusReady(function(e) {
@@ -85,25 +88,62 @@
 				var username = document.getElementById("username");
 				var txt_password = document.getElementById("txt_password");
 
-				userform.addEventListener("submit",function(){
+				userform.addEventListener("submit", function() {
 					// 判断用户名是否为空，如果为空则让其获得焦点
-					if(!app.isNotNull(username.value)){
-						username.focus();  // 获取焦点
-					}else if(!app.isNotNull(txt_password.value)){
-						txt_password.focus();  // 获取焦点
-					}else{
+					if (!app.isNotNull(username.value)) {
+						username.focus(); // 获取焦点
+					} else if (!app.isNotNull(txt_password.value)) {
+						txt_password.focus(); // 获取焦点
+					} else {
 						//  判断用户名和密码的长度进行限制
-						if(username.value.length > 12){
-							app.showToast("用户名不能超过12","error");
+						if (username.value.length > 12) {
+							app.showToast("用户名不能超过12", "error");
 							return false;
-						}else if(txt_password.value.length > 12){
-							app.showToast("密码不能超过12","error");
+						} else if (txt_password.value.length > 12) {
+							app.showToast("密码不能超过12", "error");
 							return false;
 						}
+						// 获取每台手机的唯一cid
+						var cid = plus.push.getClientInfo().clientid;
+
+						console.log("app.serverUrl=" + app.serverUrl + "/u/registOrLogin");
+						// 与后端联调
+						mui.ajax(app.serverUrl + "/u/registOrLogin", {
+							data: {
+								username: username.value,
+								password: txt_password.value,
+								cid: cid
+							},
+							dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							success: function(data) {
+								//服务器返回响应，根据响应结果，分析是否登录成功；
+								//console.log(JSON.stringify(data));
+
+								username.blur();
+								txt_password.blur();
+
+								if (data.status == 200) {
+									// 登录或者注册成功之后，保存全局用户对象到本地缓存
+									var userInfoJson = data.data;
+									app.setUserGlobalInfo(userInfoJson);
+
+									// 页面跳转
+									mui.openWindow("index.html", "index.html");
+								} else {
+									app.showToast(data.msg, "error");
+								}
+							}
+						});
+
 					}
-					
+
 					// 阻止默认事件,阻止默认表单提交
-					e.preventDefault ();
+					// e.preventDefault();
 				});
 			})
 		</script>
