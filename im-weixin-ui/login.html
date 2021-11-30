@@ -84,11 +84,18 @@
 		<script type="text/javascript">
 			/* 使用大H5+对象 plusready仅仅在app开发中使用 */
 			mui.plusReady(function(e) {
+				
+				// 判断用户是否注册登录过，如果本地内存有全局的用户对象，此时直接跳转到首页
+				var userInfo = app.getUserGlobalInfo();
+				if(userInfo != null){
+					mui.openWindow("index.html", "index.html");
+				}
+				
 				var userform = document.getElementById("userform");
 				var username = document.getElementById("username");
 				var txt_password = document.getElementById("txt_password");
 
-				userform.addEventListener("submit", function() {
+				userform.addEventListener("submit", function(e) {
 					// 判断用户名是否为空，如果为空则让其获得焦点
 					if (!app.isNotNull(username.value)) {
 						username.focus(); // 获取焦点
@@ -105,26 +112,25 @@
 						}
 						// 获取每台手机的唯一cid
 						var cid = plus.push.getClientInfo().clientid;
-
 						console.log("app.serverUrl=" + app.serverUrl + "/u/registOrLogin");
+
 						// 与后端联调
 						mui.ajax(app.serverUrl + "/u/registOrLogin", {
 							data: {
-								username: username.value,
-								password: txt_password.value,
-								cid: cid
+								"username": username.value,
+								"password": txt_password.value,
+								"cid": cid
 							},
 							dataType: 'json', //服务器返回json格式数据
 							type: 'post', //HTTP请求类型
 							timeout: 10000, //超时时间设置为10秒；
-							headers: {
-								'Content-Type': 'application/json'
-							},
+							headers: {'Content-Type': 'application/json'},
 							success: function(data) {
 								//服务器返回响应，根据响应结果，分析是否登录成功；
-								//console.log(JSON.stringify(data));
+								// console.log(JSON.stringify(data));
 								app.showToast(JSON.stringify(data), "success");
 
+								//失去焦点
 								username.blur();
 								txt_password.blur();
 
@@ -138,13 +144,16 @@
 								} else {
 									app.showToast(data.msg, "error");
 								}
+							},
+							error:function(xhr,type,errorThrown){
+								//异常处理；
+								console.log(type);
 							}
 						});
-
 					}
 
 					// 阻止默认事件,阻止默认表单提交
-					// e.preventDefault();
+					e.preventDefault();
 				});
 			})
 		</script>

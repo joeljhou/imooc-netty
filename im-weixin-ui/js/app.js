@@ -1,6 +1,6 @@
 window.app = {
 
-	serverUrl: "http://192.168.31.250:8080",
+	serverUrl: "http://192.168.2.177:8080",
 
 	/**
 	 * 判断字符串是否为空
@@ -39,6 +39,6 @@ window.app = {
 	 */
 	getUserGlobalInfo: function() {
 		var userInfoStr = plus.storage.getItem("userInfo");
-		return userInfoStr;
+		return JSON.parse(userInfoStr);
 	},
 }

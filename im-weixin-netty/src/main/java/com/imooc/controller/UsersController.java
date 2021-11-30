@@ -1,22 +1,16 @@
 package com.imooc.controller;
 
-
 import com.imooc.pojo.UsersBean;
 import com.imooc.pojo.vo.UsersVO;
 import com.imooc.service.IUsersService;
 import com.imooc.util.IMoocJSONResult;
 import com.imooc.util.MD5Utils;
-import lombok.SneakyThrows;
-import org.apache.catalina.security.SecurityUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 /**
  * <p>
@@ -26,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author baomidou
  * @since 2021-11-22
  */
-@RestController
+@Controller
 @RequestMapping("/u")
 public class UsersController {
 
@@ -34,6 +28,7 @@ public class UsersController {
     private IUsersService iUsersService;
 
     @PostMapping("/registOrLogin")
+    @ResponseBody
     public IMoocJSONResult registOrLogin(@RequestBody UsersBean usersBean) throws Exception{
 
         // 0.判断用户名和密码不能为空
