@@ -1,7 +1,14 @@
 window.app = {
 
+	/**
+	 * 后端服务发布的url地址
+	 */
 	serverUrl: "http://192.168.2.177:8080",
 
+	/**
+	 * 图片服务器的url地址
+	 */
+	imgserverUrl: "",
 	/**
 	 * 判断字符串是否为空
 	 * @param str
