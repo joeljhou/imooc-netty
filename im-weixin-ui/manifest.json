@@ -2,7 +2,7 @@
     "@platforms" : [ "android", "iPhone", "iPad" ],
     "id" : "H58D6E087",
     /*应用的标识，创建应用时自动生成，勿手动修改*/
-    "name" : "imooc-muxin",
+    "name" : "im-weixin-ui",
     /*应用名称，程序桌面图标名称*/
     "version" : {
         "name" : "1.0.0",
