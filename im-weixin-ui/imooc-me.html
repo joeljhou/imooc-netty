@@ -14,7 +14,7 @@
 		<div class="mui-content">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-media">
-					<a href="javascript:;">
+					<a id="link_myface" href="javascript:;">
 						<span class="mui-pull-right mui-icon mui-icon-arrowright"
 							style="line-height: 42px;color: lightgray;margin-left: 3px;"></span>
 						<img id="img_my_face" class="mui-media-object mui-pull-right" src="image/headimg/headimg2.jpg">
@@ -83,6 +83,12 @@
 				meWebView.addEventListener("show", function() {
 					refreshUserInfo();
 				});
+				
+				// 页面跳转，我的头像
+				var link_myface = document.getElementById("link_myface");
+				link_myface.addEventListener("tap",function(){
+					mui.openWindow("myface.html", "myface.html");
+				})
 			})
 
 			function refreshUserInfo() {
