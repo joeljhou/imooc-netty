@@ -28,4 +28,13 @@ public interface IUsersService extends IService<UsersBean> {
      */
     UsersBean saveUser(UsersBean usersBean);
 
+    /**
+     * 修改用户记录
+     */
+    UsersBean updateUserInfo(UsersBean usersBean);
+
+    /**
+     * 根据主键查询用户
+     */
+    UsersBean queryUsersById(String userId);
 }

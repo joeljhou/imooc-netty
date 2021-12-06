@@ -43,12 +43,26 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, UsersBean> implem
         return usersBean;
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public UsersBean saveUser(UsersBean usersBean) {
         //TODO 为每个用户生成一个唯一的二维码
         usersBean.setQrcode("");
         usersMapper.insert(usersBean);
         return usersBean;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public UsersBean updateUserInfo(UsersBean usersBean) {
+        usersMapper.updateById(usersBean);
+        return queryUsersById(usersBean.getId());
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public UsersBean queryUsersById(String userId) {
+        return usersMapper.selectById(userId);
     }
 
 }
